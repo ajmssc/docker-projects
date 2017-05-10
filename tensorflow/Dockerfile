@@ -87,6 +87,6 @@ RUN cd /serving/tensorflow && \
     USE_DEFAULT_PYTHON_LIB_PATH=1 \
     ./configure
 
-RUN cd /serving && bazel build --linkopt='-lrt' -c opt --copt=-mavx --copt=-msse4.2 --copt=-msse4.1 --copt=-msse3 -k --local_resources "2048,.5,1.0" //tensorflow_serving/model_servers:tensorflow_model_server
+RUN cd /serving && bazel build --linkopt='-lrt' -c opt --copt=-march=native -k --local_resources "2048,.5,1.0" //tensorflow_serving/model_servers:tensorflow_model_server
 
 CMD ["/bin/bash"]
